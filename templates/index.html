@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launcher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Launcher</h1>
+    <div id="launcherContainer">
+        {% for button in buttons %}
+        <button class="launcherButton" data-target="{{ button.target }}">{{ button.text }}</button>
+        {% endfor %}
+        <button id="addButton">+</button>
+    </div>
+
+    <div id="todoContainer">
+        <h2>To-Do List</h2>
+        <table id="todoTable">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Priority</th>
+                    <th>ECD</th>
+                    <th>PoC</th>
+                    <th>Status</th>
+                    <th>Completed On</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- To-do list rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Button</h2>
+            <label for="buttonText">Button Text:</label>
+            <input type="text" id="buttonText" required>
+            <label for="targetType">Target Type:</label>
+            <select id="targetType">
+                <option value="url">URL</option>
+                <option value="program">Program</option>
+                <option value="directory">Directory</option>
+            </select>
+            <label for="targetValue">Target Value:</label>
+            <input type="text" id="targetValue" required>
+            <button id="saveButton">Save</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
